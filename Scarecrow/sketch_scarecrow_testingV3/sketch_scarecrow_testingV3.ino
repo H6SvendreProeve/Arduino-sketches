@@ -1,6 +1,18 @@
+#include <Servo.h>
+
+Servo servoRightLeg;  
+Servo servoRightArm;
+Servo servoLeftLeg;  
+Servo servoLeftArm;  
+
 void setup() {
   Serial.begin(9600);
   randomSeed(analogRead(0));
+
+  servoRightLeg.attach(9);
+  servoRightArm.attach(10);
+  servoLeftLeg.attach(11);
+  servoLeftArm.attach(12);
 }
 
 void loop() {
@@ -11,33 +23,73 @@ void loop() {
   
   chooceRandomLim(randomAmountOfLims);
 
-  while(true) {
-    delay(100000);
-  }
+  //while(true) {
+    delay(500);
+  //}
 }
 
-void setRandomLimPos() {
-  switch(3) {
-    case 1:
-      //int randomNumForRL = GiveRandomNum();
-      //Serial.print("The random number given to right leg: ");
-      //Serial.println(randomNumForRL);
+
+void setRandomLimPos2(int caseValue) {
+  if (caseValue == 1) {
+    int randomNumForRL = GiveRandomNum();
+      Serial.print("The random number given to right leg: ");
+      Serial.println(randomNumForRL);
+
+      servoRightLeg.write(randomNumForRL);
+  } else if (caseValue == 2) {
+          int randomNumForRA = GiveRandomNum();
+      Serial.print("The random number given to right arm: ");
+      Serial.println(randomNumForRA);
       
+      servoRightArm.write(randomNumForRA);
+  } else if (caseValue == 3) {
+          int randomNumForLL = GiveRandomNum();
+      Serial.print("The random number given to left leg: ");
+      Serial.println(randomNumForLL);
+
+      servoLeftLeg.write(randomNumForLL);
+  } else if (caseValue == 4) {
+          int randomNumForLA = GiveRandomNum();
+      Serial.print("The random number given to left arm: ");
+      Serial.println(randomNumForLA);
+
+      servoLeftArm.write(randomNumForLA);
+  }
+  delay(500);
+}
+
+
+void setRandomLimPos(int valueToSwitchOn) {
+  Serial.println("in method setrandomlimpos");
+  Serial.println(valueToSwitchOn);
+  switch(valueToSwitchOn) {
+    case 1:
+      int randomNumForRL = GiveRandomNum();
+      Serial.print("The random number given to right leg: ");
+      Serial.println(randomNumForRL);
+
+      servoRightLeg.write(randomNumForRL);
       break;
     case 2:
-      //int randomNumForRA = GiveRandomNum();
-      //Serial.print("The random number given to right arm: ");
-      //Serial.println(randomNumForRA);
+      int randomNumForRA = GiveRandomNum();
+      Serial.print("The random number given to right arm: ");
+      Serial.println(randomNumForRA);
+      
+      servoRightArm.write(randomNumForRA);
       break;
     case 3:
-      //int randomNumForLL = GiveRandomNum();
-      //Serial.print("The random number given to left leg: ");
-      //Serial.println(randomNumForLL);
+      int randomNumForLL = GiveRandomNum();
+      Serial.print("The random number given to left leg: ");
+      Serial.println(randomNumForLL);
+
+      servoLeftLeg.write(randomNumForLL);
       break;
     case 4:
-      //int randomNumForLA = GiveRandomNum();
-      //Serial.print("The random number given to left arm: ");
-      //Serial.println(randomNumForLA);
+      int randomNumForLA = GiveRandomNum();
+      Serial.print("The random number given to left arm: ");
+      Serial.println(randomNumForLA);
+
+      servoLeftArm.write(randomNumForLA);
       break;
   }
 }
@@ -75,6 +127,8 @@ void chooceRandomLim(int amountOfLims) {
   }
 
   printArray(tempArr, arrLength);
+  setServoPos(tempArr, arrLength);
+  //setRandomLimPos2(3);
 }
 
 bool doesThisIntArrayContain(int value, int* arr, int arrSize) {
@@ -99,4 +153,17 @@ void printArray(int arr[], int arrSize) {
     Serial.print(" | ");
   }
   Serial.println();
+}
+
+void setServoPos(int arr[], int arrSize) {
+  Serial.println("in method set servos pos");
+  for(int i = 0; i < arrSize; i++) {
+    Serial.println(arr[i]);
+    setRandomLimPos2(arr[i]);
+  }
+  delay(1000);
+}
+
+int GiveRandomNum(){
+  return random(180);
 }
