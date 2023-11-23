@@ -1,13 +1,18 @@
 #include <Servo.h>
+#include <Wire.h>
 
 Servo servoRightLeg;  
 Servo servoRightArm;
 Servo servoLeftLeg;  
 Servo servoLeftArm;  
 
+String instructionMessage;
+
 void setup() {
   Serial.begin(9600);
   randomSeed(analogRead(0));
+  Wire.begin(0x08);
+  Wire.onReceive(receiveEvent);
 
   servoLeftLeg.attach(9);
   servoRightLeg.attach(10);
@@ -16,12 +21,22 @@ void setup() {
 }
 
 void loop() {
-  int randomAmountOfLims = random(1, 5);
+  Serial.print("I2C message is: ");
+  Serial.println(instructionMessage);
+  if(instructionMessage == "start"){
+    int randomAmountOfLims = random(1, 5);
   
-  Serial.print("random amount of lims: ");
-  Serial.println(randomAmountOfLims);
+    Serial.print("random amount of lims: ");
+    Serial.println(randomAmountOfLims);
   
   chooceRandomLim(randomAmountOfLims);
+  }
+  //int randomAmountOfLims = random(1, 5);
+  
+  //Serial.print("random amount of lims: ");
+  //Serial.println(randomAmountOfLims);
+  
+  //chooceRandomLim(randomAmountOfLims);
 
   //while(true) {
     delay(500);
@@ -176,4 +191,13 @@ void setServoPos(int arr[], int arrSize) {
 
 int giveRandomNum(int minValue, int maxValue){
   return random(minValue, maxValue);
+}
+
+void receiveEvent(int bytes) {
+  String message = "";
+  while (Wire.available()) {
+  char c = Wire.read();
+  message += c;
+ }
+ instructionMessage = message;
 }

@@ -54,6 +54,7 @@ void setup()
   Serial.begin(115200);
   lcd.init();
   lcd.backlight();
+  Wire.begin();
 }
 
 void loop()
@@ -77,6 +78,14 @@ void loop()
   writeDissolvedOxygenMeasurementToDisplay(mgPerLiter);
   Serial.println("----------------------------------");
 
+  if(mgPerLiter < 4){
+    writeI2C(0x08, "start");
+    Serial.println("start is send to scarcrow");
+  } else {
+    writeI2C(0x08, "stop");
+    Serial.println("stop is send to scarcrow");
+  }
+
   delay(1000);
 }
 
@@ -88,4 +97,10 @@ void writeDissolvedOxygenMeasurementToDisplay(float measurement){
   lcd.print(measurement);
   lcd.setCursor(11,2);
   lcd.print("mg/L");
+}
+
+void writeI2C(int address, char* content){
+  Wire.beginTransmission(address);
+  Wire.write(content);
+  Wire.endTransmission();
 }
