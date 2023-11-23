@@ -1,4 +1,8 @@
 #include <Arduino.h>
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27,20,4);
 
 #define DO_PIN A1
 
@@ -48,6 +52,8 @@ return (voltage_mv * DO_Table[temperature_c] / V_saturation);
 void setup()
 {
   Serial.begin(115200);
+  lcd.init();
+  lcd.backlight();
 }
 
 void loop()
@@ -68,7 +74,18 @@ void loop()
   Serial.print(mgPerLiter);
   //Serial.print((readDO(ADC_Voltage, Temperaturet))/1000);
   Serial.println(" mg/l");
+  writeDissolvedOxygenMeasurementToDisplay(mgPerLiter);
   Serial.println("----------------------------------");
 
   delay(1000);
+}
+
+void writeDissolvedOxygenMeasurementToDisplay(float measurement){
+  // lcd.setCursor(1,0); | lcd.setCursor(row index, colum index) 
+  lcd.setCursor(1,1);
+  lcd.print("Dissolved oxygen:");
+  lcd.setCursor(6,2);
+  lcd.print(measurement);
+  lcd.setCursor(11,2);
+  lcd.print("mg/L");
 }
