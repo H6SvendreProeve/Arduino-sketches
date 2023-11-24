@@ -161,30 +161,30 @@ void loop() {
 //}
 
 ///to Helper.h
-bool doesThisIntArrayContain(int value, int* arr, int arrSize) {
-  bool isIn = false;
+//bool doesThisIntArrayContain(int value, int* arr, int arrSize) {
+//  bool isIn = false;
 
-  for(int i = 0; i < arrSize; i++) {
-    if(arr[i] == value) {
-      isIn = true;
-    } 
-  }
+//  for(int i = 0; i < arrSize; i++) {
+//    if(arr[i] == value) {
+//      isIn = true;
+//    } 
+//  }
   
-  Serial.println("-----------------------------------");
-  Serial.print("Return isIn is: ");
-  Serial.println(isIn);
-  Serial.println("-----------------------------------");
-  return isIn;
-}
+//  Serial.println("-----------------------------------");
+//  Serial.print("Return isIn is: ");
+//  Serial.println(isIn);
+//  Serial.println("-----------------------------------");
+//  return isIn;
+//}
 
 ///to Helper.h
-void printArray(int arr[], int arrSize) {
-  for(int i = 0; i < arrSize; i++) {
-    Serial.print(arr[i]);
-    Serial.print(" | ");
-  }
-  Serial.println();
-}
+//void printArray(int arr[], int arrSize) {
+//  for(int i = 0; i < arrSize; i++) {
+//    Serial.print(arr[i]);
+//    Serial.print(" | ");
+//  }
+//  Serial.println();
+//}
 
 ///to Servo_controller.h
 //void setServoPos(int arr[], int arrSize) {
