@@ -4,11 +4,10 @@
 String instructionMessage = ""; 
 
 void i2cSlaveSetup(){
-  Wire.begin(0x08);             //to I2c_slave.h
-  Wire.onReceive(receiveEvent); //to I2c_slave.h
+  Wire.begin(i2cSlaveAddress); 
+  Wire.onReceive(receiveEvent); 
 }
 
-///to I2c_slave
 void receiveEvent(int bytes) {
   String message = "";
   while (Wire.available()) {

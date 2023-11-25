@@ -1,12 +1,13 @@
 #ifndef I2CSLAVE_H
 #define I2CSLAVE_H
 #include <Arduino.h>
-#include <Wire.h>  //to I2c_slave.h
+#include <Wire.h> 
 
-extern String instructionMessage; //to I2c_slave.h
+#define i2cSlaveAddress 0x08
+
+extern String instructionMessage;
 
 void i2cSlaveSetup();
-///to I2c_slave
 void receiveEvent(int bytes);
 
 #endif

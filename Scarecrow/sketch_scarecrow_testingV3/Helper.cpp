@@ -1,6 +1,5 @@
 #include "Helper.h"
 
-///to Helper.h
 void printArray(int arr[], int arrSize) {
   for(int i = 0; i < arrSize; i++) {
     Serial.print(arr[i]);
@@ -9,7 +8,6 @@ void printArray(int arr[], int arrSize) {
   Serial.println();
 }
 
-///to Helper.h
 bool doesThisIntArrayContain(int value, int* arr, int arrSize) {
   bool isIn = false;
 
