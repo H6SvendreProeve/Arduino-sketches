@@ -1,6 +1,6 @@
 #include "Helper.h"
 
-void printArray(int arr[], const int arrSize) {
+void Helper::printArray(int arr[], const int arrSize) {
   const int arrEmpty = 0;
   if (arrSize <= arrEmpty) {
     Serial.println("Invalid array size"); //TODO: move to logger file
@@ -14,7 +14,7 @@ void printArray(int arr[], const int arrSize) {
 
 }
 
-bool doesThisIntArrayContain(int value, int* arr, const int arrSize) {
+bool Helper::doesThisIntArrayContain(int value, int* arr, const int arrSize) {
   if (arrSize <= 0) {
     Serial.println("Invalid array size"); //TODO: move to logger file
     return false;

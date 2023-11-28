@@ -1,3 +1,10 @@
+/*
+ * I2c_slave
+ * -----------------
+ * Her implementer jeg de funtioner i fra 
+ * header filen 12c_slave.h
+ */
+
 #include "I2c_slave.h"
 
 String instructionMessage = ""; 
