@@ -4,7 +4,8 @@
 #include "Helper.h"
 
 void randomNumGenertorSetup();
-int* chooceRandomNum(int amountOfNumbers);
+int* chooseRandomNum(int amountOfNumbers);
+int* setallLims(int* arr, int arrLength);
 int giveRandomNum(int minValue, int maxValue);
 
 #endif

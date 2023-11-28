@@ -18,15 +18,18 @@ void setup() {
 }
 
 void loop() {
-  Serial.print("I2C message is: ");
-  Serial.println(instructionMessage); 
+  Serial.print("I2C message is: ");   //TODO: move to logger file
+  Serial.println(instructionMessage); //TODO: move to logger file
+  
   if(instructionMessage == "start"){ 
-    int randomAmountOfLims = random(1, 5); 
+    const int minRandomValue = 1;
+    const int maxRandomValue = 5;
+    int randomAmountOfLims = random(minRandomValue, maxRandomValue); 
 
-    Serial.print("random amount of lims: "); 
+    Serial.print("random amount of lims: ");
     Serial.println(randomAmountOfLims);
 
-    int* randomLims = chooceRandomNum(randomAmountOfLims);
+    int* randomLims = chooseRandomNum(randomAmountOfLims);
   
     printArray(randomLims, randomAmountOfLims);
     setRandomLimPos(randomLims, randomAmountOfLims);
@@ -37,37 +40,51 @@ void loop() {
  
 }
 
-void setRandomLimPos(int arr[], int arrSize) {
+static void setRandomLimPos(int arr[], const int arrSize) {
   for(int i = 0; i < arrSize; i++) {
   if (arr[i] == 1) {
-    int randomNumForRL = giveRandomNum(15,155);
-    Serial.print("The random number given to right leg: ");
-    Serial.println(randomNumForRL);
+    setLimPosition("Right leg", servoRightLeg, 15, 155);
+    //int randomNumForRL = giveRandomNum(15,155);
+    //Serial.print("The random number given to right leg: "); //TODO: move to logger file
+    //Serial.println(randomNumForRL);                         //TODO: move to logger file
 
-    servoRightLeg.write(randomNumForRL);
-    delay(100);
+    //servoRightLeg.write(randomNumForRL);
+    //delay(100);
   } else if (arr[i] == 2) {
-    int randomNumForRA = giveRandomNum(50,170);
-    Serial.print("The random number given to right arm: ");
-    Serial.println(randomNumForRA);
+    setLimPosition("Right arm", servoRightArm, 50, 170);
+    //int randomNumForRA = giveRandomNum(50,170);
+    //Serial.print("The random number given to right arm: "); //TODO: move to logger file
+    //Serial.println(randomNumForRA);                         //TODO: move to logger file
       
-    servoRightArm.write(randomNumForRA);
-    delay(100);
+    //servoRightArm.write(randomNumForRA);
+    //delay(100);
   } else if (arr[i] == 3) {
-    int randomNumForLL = giveRandomNum(20,160);
-    Serial.print("The random number given to left leg: ");
-    Serial.println(randomNumForLL);
+    setLimPosition("left leg", servoLeftLeg, 20, 160);
+    //int randomNumForLL = giveRandomNum(20,160);
+    //Serial.print("The random number given to left leg: "); //TODO: move to logger file
+    //Serial.println(randomNumForLL);                        //TODO: move to logger file
 
-    servoLeftLeg.write(randomNumForLL);
-    delay(100);
+    //servoLeftLeg.write(randomNumForLL);
+    //delay(100);
   } else if (arr[i] == 4) {
-    int randomNumForLA = giveRandomNum(10,150);
-    Serial.print("The random number given to left arm: ");
-    Serial.println(randomNumForLA);
+    setLimPosition("left arm", servoLeftArm, 10, 150);
+    //int randomNumForLA = giveRandomNum(10,150);
+    //Serial.print("The random number given to left arm: ");  //TODO: move to logger file
+    //Serial.println(randomNumForLA);                         //TODO: move to logger file
 
-    servoLeftArm.write(randomNumForLA);
-    delay(100);
+    //servoLeftArm.write(randomNumForLA);
+    //delay(100);
   }
   delay(1000);
   }
+}
+
+static void setLimPosition(const char* servoName, Servo servoObj, const int minMovementRange, const int maxMovementRange){
+    int randomNum = giveRandomNum(minMovementRange, maxMovementRange);
+    
+    Serial.print("The random number given to : ");      //TODO: move to logger file
+    Serial.println(servoName);                        //TODO: move to logger file
+    
+    servoObj.write(randomNum);
+    delay(100);
 }

@@ -1,6 +1,5 @@
 #include "I2c_slave.h"
 
-
 String instructionMessage = ""; 
 
 void i2cSlaveSetup(){
@@ -9,10 +8,15 @@ void i2cSlaveSetup(){
 }
 
 void receiveEvent(int bytes) {
-  String message = "";
-  while (Wire.available()) {
-  char c = Wire.read();
-  message += c;
- }
- instructionMessage = message;
+  if (bytes <= 0) {
+    Serial.println("No bytes received"); //TODO: move to logger file
+  }else {
+    String message = "";
+    while (Wire.available()) {
+      char c = Wire.read();
+      message += c;
+    }
+    instructionMessage = message;
+  }
+
 }
