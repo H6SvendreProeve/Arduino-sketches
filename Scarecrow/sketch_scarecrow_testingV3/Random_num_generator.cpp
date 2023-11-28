@@ -14,6 +14,9 @@
 #include "Random_num_generator.h"
 
 void RandomNumGenerator::randomNumGenertorSetup(){
+  /*Denne linje bruges almindeligvis til at "seed" generatoren 
+  af tilfældige tal med en værdi baseret på 
+  aflæsningen fra en analog pin.*/
   randomSeed(analogRead(0));
 }
 
@@ -21,7 +24,8 @@ void RandomNumGenerator::randomNumGenertorSetup(){
 int* RandomNumGenerator::chooseRandomNum(int amountOfNumbers) {
   int *tempArr = new int[amountOfNumbers];
   int arrLength = amountOfNumbers;
-  logger.printArrLength(arrLength);
+  Serial.print("Array length is: ");
+  Serial.println(arrLength);
 
   const int allLims = 4;
   if(arrLength == allLims){

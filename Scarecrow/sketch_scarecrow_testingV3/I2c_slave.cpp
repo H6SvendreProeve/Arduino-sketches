@@ -7,6 +7,10 @@
 
 #include "I2c_slave.h"
 
+/*Denne linje er skrevet for at sikre, at man kan aflæse værdien der, 
+hvor den skal anvendes. Dette skyldes, at "receiveEvent()" funktionen 
+bliver kaldt af I2C-bussen og ikke et bestemt sted i koden. 
+Af denne grund er denne variabel defineret som global.*/
 String instructionMessage = ""; 
 
 void i2cSlaveSetup(){
@@ -16,7 +20,7 @@ void i2cSlaveSetup(){
 
 void receiveEvent(int bytes) {
   if (bytes <= 0) {
-    Serial.println("No bytes received"); //TODO: move to logger file
+    Serial.println("No bytes received");
   }else {
     String message = "";
     while (Wire.available()) {

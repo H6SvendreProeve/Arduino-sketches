@@ -9,7 +9,6 @@
 #define RANDOMNUMGENERATOR_H
 #include <Arduino.h>
 #include "Helper.h"
-#include "Logger.h"
 
 class RandomNumGenerator{
   public: 
@@ -20,7 +19,6 @@ class RandomNumGenerator{
   private:
     int* setallLims(int* arr, int arrLength);
     int* setSomeLims(int* arr, int arrLength);
-    Logger logger;
     Helper helper;
 };
 

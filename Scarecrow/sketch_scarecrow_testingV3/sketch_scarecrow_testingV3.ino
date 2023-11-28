@@ -20,8 +20,8 @@ void setup() {
 }
 
 void loop() {
-  Serial.print("I2C message is: ");   //TODO: move to logger file
-  Serial.println(instructionMessage); //TODO: move to logger file
+  Serial.print("I2C message is: ");
+  Serial.println(instructionMessage);
   
   if(instructionMessage == "start"){ 
     const int minRandomValue = 1;
@@ -67,8 +67,8 @@ static void setRandomLimPos(int arr[], const int arrSize) {
 static void setLimPosition(const char* servoName, Servo servoObj, const int minMovementRange, const int maxMovementRange){
     int randomNum = ranGenerator.giveRandomNum(minMovementRange, maxMovementRange);
     
-    Serial.print("The random number given to : ");      //TODO: move to logger file
-    Serial.println(servoName);                        //TODO: move to logger file
+    Serial.print("The random number given to : ");
+    Serial.println(servoName);
     
     servoObj.write(randomNum);
     delay(100);
