@@ -10,9 +10,15 @@ void setup(){
 
 void loop(){
   float mgPerLiter = getMgPerLMeasurement();
+  Serial.println("mg per liter variable:");
+  Serial.println(mgPerLiter);
   writeDissolvedOxygenMeasurementToDisplay(mgPerLiter);
+  
+  sendI2CMessagetoApiSlave(mgPerLiter, slaveAddressToApiHandler);
 
+  //sendI2CMessagetoSlave(mgPerLiter, slaveAddressToApiHandler);
   sendI2CMessagetoSlave(mgPerLiter, slaveAddressToScarcrow);
+  
   delay(1000);
 }
 
@@ -28,7 +34,18 @@ void sendI2CMessagetoSlave(int dissolvedOxygenMgPerL, uint16_t i2cAddress){
   }
 }
 
+
+
+void sendI2CMessagetoApiSlave(float dissolvedOxygenMgPerL, uint16_t i2cAddress){
+    writeNumberI2c(i2cAddress, dissolvedOxygenMgPerL);
+    Serial.println("start is send to api");
+
+  }
+
+
 void writeDissolvedOxygenMeasurementToDisplay(float measurement){ 
+  Serial.println("writeDissolvedOxygenMeasurementToDisplay:");
+  Serial.println(measurement);
   writeToDisplay(1, 1, "Dissolved oxygen:");
   writeToDisplay(6, 2, String(measurement));
   writeToDisplay(11, 2, "mg/L");

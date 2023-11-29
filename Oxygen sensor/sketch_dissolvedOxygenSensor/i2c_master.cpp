@@ -9,3 +9,12 @@ void writeI2C(int address, char* content){
   Wire.write(content);
   Wire.endTransmission();
 }
+
+void writeNumberI2c(int address, float number){
+   byte buffer[sizeof(float)];
+  memcpy(buffer, &number, sizeof(float));
+  
+  Wire.beginTransmission(address);
+  Wire.write(buffer, sizeof(float));
+  Wire.endTransmission();
+}

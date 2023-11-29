@@ -41,4 +41,5 @@ float getMgPerLMeasurement(){
   Serial.print(mgPerLiter);
   //Serial.print((readDO(ADC_Voltage, Temperaturet))/1000);
   Serial.println(" mg/l");
+  return mgPerLiter;
 }

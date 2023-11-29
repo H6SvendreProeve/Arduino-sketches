@@ -1,5 +1,7 @@
 #include <WiFiNINA.h>
+#include <ArduinoHttpClient.h>
 #include "config.h"
+#include "I2c_slave.h"
 
 char ssid[] = "H6 Svendeprove grp3";
 char pass[] = "iltsvind";
@@ -10,13 +12,14 @@ int status = WL_IDLE_STATUS;  // Initialize status variable
 void setup() {
   // Start serial communication
   Serial.begin(9600);
-
+  i2cSlaveSetup();
+  
   // Connect to Wi-Fi
   while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to SSID: ");
     Serial.println(ssid);
     status = WiFi.begin(ssid, pass);
-    delay(10000);  // Try to connect every 10 seconds
+    delay(1000);  // Try to connect every 10 seconds
   }
 
   // Print your MKR 1010's IP address
@@ -25,9 +28,11 @@ void setup() {
 }
 
 void loop() {
-  String respones = sendHttpRequsetchar(host, path);
-  Serial.println("printing respones:");
-  Serial.println(respones);
+  makePostRequest();
+  //String respones = sendHttpRequsetchar(host, path);
+  //Serial.println("printing respones:");
+  //Serial.println(respones);
+  delay(1000);
 }
 
 void printWiFiStatus() {
@@ -35,6 +40,32 @@ void printWiFiStatus() {
   IPAddress ip = WiFi.localIP();
   Serial.print("IP Address: ");
   Serial.println(ip);
+}
+
+void makePostRequest() {
+  // Create a client object
+  WiFiClient wifiClient;
+  HttpClient client = HttpClient(wifiClient, host, 8088);
+
+  // Define the POST data
+  //String postData = "oxygenValue=5.40";
+  String jsonData = "{\"oxygenValue\": " + String(receivedFloat) + "}";
+
+  // Make the POST request
+  client.post(path, "application/json", jsonData);
+
+  // Get the response from the server
+  int statusCode = client.responseStatusCode();
+  String response = client.responseBody();
+
+  // Print the response
+  Serial.print("Status code: ");
+  Serial.println(statusCode);
+  Serial.print("Response: ");
+  Serial.println(response);
+
+    // Close the client to release the socket
+  client.stop();
 }
 
 String sendHttpRequsetchar(const char* host, const char* path){
