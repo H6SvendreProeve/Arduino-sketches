@@ -1,8 +1,8 @@
 /*
  * I2c_slave
  * -----------------
- * Denne file er indeholder i2c håndtergen
- * så man kan til gå det 
+ * Denne fil er til at modtage 
+ * beskeder over I2C.
  */
 
 #ifndef I2CSLAVE_H
