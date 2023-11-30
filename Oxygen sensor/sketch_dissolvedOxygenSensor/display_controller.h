@@ -5,11 +5,7 @@
 
 extern LiquidCrystal_I2C lcd;
 
-
-  void displayControllerSetup();
-  void writeToDisplay(int rowIndex, int columIndex, String text);
-
-  
-
+void displayControllerSetup();
+void writeToDisplay(int rowIndex, int columIndex, String text);
 
 #endif

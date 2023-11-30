@@ -11,6 +11,5 @@ void displayControllerSetup(){
   void writeToDisplay(int rowIndex, int columIndex, String text){
   // lcd.setCursor(1,0); | lcd.setCursor(row index, colum index) 
   lcd.setCursor(rowIndex,columIndex);
-  //lcd.print("Dissolved oxygen:");
   lcd.print(text);
 }
