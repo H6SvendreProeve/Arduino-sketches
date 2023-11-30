@@ -1,3 +1,9 @@
+/*
+ * i2c_message_handler
+ * -----------------
+ * Denne fil er til at generere beskeder, som bliver sendt via I2C-protokollen.
+ */
+
 #ifndef I2CMESSAGEHANDLER_H
 #define I2CMESSAGEHANDLER_H
 #include <Arduino.h>

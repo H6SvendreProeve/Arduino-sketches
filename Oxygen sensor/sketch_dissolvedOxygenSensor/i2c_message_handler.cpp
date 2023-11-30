@@ -1,3 +1,12 @@
+/*
+ * i2c_message_handler
+ * -----------------
+ * Denne fil implementer de funtioner fra header 
+ * filen i2c_message_handler.h
+ *  sendI2CMessagetoSlave
+ *  sendI2CMessagetoApiSlave
+ */
+
 #include "i2c_message_handler.h"
 
 void sendI2CMessagetoSlave(bool isDOGood, uint16_t i2cAddress){

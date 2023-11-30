@@ -1,3 +1,9 @@
+/*
+ * i2c_master
+ * -----------------
+ * Denne fil er til at skabe kommunikere / skriver over 12c protokollen.
+ */
+
 #ifndef I2CMASTER_H
 #define I2CMASTER_H
 #include <Wire.h> 

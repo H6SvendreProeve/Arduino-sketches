@@ -22,17 +22,6 @@ void loop(){
 }
 
 
-//void sendI2CMessagetoSlave(bool isDOGood, uint16_t i2cAddress){
-//  if(isDOGood){
-//    writeI2C(i2cAddress, "start");
-//    Serial.println("start is send");
-//  } else {
-//    writeI2C(i2cAddress, "stop");
-//    Serial.println("stop is send");
-//  }
-//}
-
-
 bool isDissolvedOxygenMeasurementGood(int dissolvedOxygenMgPerL){
   int goodDissolvedOxygenValue = 4;
 
@@ -44,13 +33,8 @@ bool isDissolvedOxygenMeasurementGood(int dissolvedOxygenMgPerL){
 }
 
 
-//void sendI2CMessagetoApiSlave(float dissolvedOxygenMgPerL, uint16_t i2cAddress){
-//    writeNumberI2c(i2cAddress, dissolvedOxygenMgPerL);
-//    Serial.println("Dissolvd oxygen mesument is send to api microcontroller slave");
-//}
-
-
 void writeDissolvedOxygenMeasurementToDisplay(float measurement){ 
+  // Dispaly index X(row): 1, 6, 11 Y(column): 1, 2, 2 Axis
   writeToDisplay(1, 1, "Dissolved oxygen:");
   writeToDisplay(6, 2, String(measurement));
   writeToDisplay(11, 2, "mg/L");

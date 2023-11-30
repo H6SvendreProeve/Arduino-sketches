@@ -1,3 +1,13 @@
+/*
+ * i2c_master
+ * -----------------
+ * Denne fil implementer de funtioner fra header 
+ * filen i2c_mester.h
+ *  i2cMasterSetup
+ *  writeI2C
+ *  writeNumberI2c
+ */
+
 #include "i2c_master.h"
 
 void i2cMasterSetup(){

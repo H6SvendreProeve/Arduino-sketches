@@ -1,5 +1,17 @@
-#include "display_controller.h"
+/*
+ * dissolved_oxygen_sensor
+ * -----------------
+ * Denne fil implementerer funktionerne og et object af displayed 
+ * filen display_controller.h
+ * Objecter:
+ *  lcd
+ * funtioner:
+ *  displayControllerSetup
+ *  writeToDisplay
+ */
 
+
+#include "display_controller.h"
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
