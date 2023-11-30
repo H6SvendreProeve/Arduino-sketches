@@ -1,3 +1,10 @@
+/*
+ * Helper
+ * -----------------
+ * Her implementer jeg de funtioner i fra 
+ * header filen Helper.h
+ */
+
 #include "Helper.h"
 
 void Helper::printArray(int arr[], const int arrSize) {

@@ -1,3 +1,10 @@
+/*
+ * Helper
+ * -----------------
+ * Denne klasse er til at håndtere ting, 
+ * som kan blive brugt mange steder.
+ */
+
 #ifndef HELPER_H
 #define HELPER_H
 #include <Arduino.h>
