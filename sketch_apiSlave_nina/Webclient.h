@@ -12,7 +12,6 @@
 #include <ArduinoHttpClient.h>
 #include "config.h"
 
-
 void webclientSetup();
 void printWiFiStatus();
 void makePostRequest(float value);

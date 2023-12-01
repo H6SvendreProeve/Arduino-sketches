@@ -9,13 +9,17 @@
 
 #include "Webclient.h"
 
-char ssid[] = "H6 Svendeprove grp3";
-char pass[] = "iltsvind";
+char ssid[] = SSID;
+char pass[] = PASSWORD;           
+uint16_t port = PORT;
 char host[] = HOST;
 char path[] = PATH;
 int status = WL_IDLE_STATUS;
 
+
 void webclientSetup(){
+  Serial.println("Connected to Wi-Fi");
+  
   while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to SSID: ");
     Serial.println(ssid);
@@ -31,12 +35,12 @@ void printWiFiStatus() {
   Serial.println(ip);
 }
 
-
+ 
 void makePostRequest(float value) {
   WiFiClient wifiClient;
-  HttpClient client = HttpClient(wifiClient, host, 8088);
-  
-  String jsonData = "{\"oxygenValue\": " + String(value) + "}";
+  HttpClient client = HttpClient(wifiClient, host, port);
+  String keyValue = ""{\"oxygenValue\": "; // keyValue er nøgle værdien til body´en af post requested
+  String jsonData = keyValue + String(value) + "}";
   client.post(path, "application/json", jsonData);
 
   int statusCode = client.responseStatusCode();
