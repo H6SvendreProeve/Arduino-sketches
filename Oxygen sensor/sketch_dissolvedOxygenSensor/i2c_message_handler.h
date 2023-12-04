@@ -9,7 +9,7 @@
 #include <Arduino.h>
 #include "i2c_master.h"
 
-void sendI2CMessagetoSlave(bool isDOGood, uint16_t i2cAddress);
-void sendI2CMessagetoApiSlave(float dissolvedOxygenMgPerL, uint16_t i2cAddress);
+void sendI2CMessageToSlave(bool isDONotGood, uint16_t i2cAddress);
+void sendI2CMessageToApiSlave(float dissolvedOxygenMgPerL, uint16_t i2cAddress);
 
 #endif

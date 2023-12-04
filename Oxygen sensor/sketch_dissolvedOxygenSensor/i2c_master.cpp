@@ -15,9 +15,13 @@ void i2cMasterSetup(){
 }
 
 void writeI2C(int address, char* content){
+  Serial.println("i2c test 1");
   Wire.beginTransmission(address);
+  Serial.println("i2c test 2");
   Wire.write(content);
+  Serial.println("i2c test 3");
   Wire.endTransmission();
+  Serial.println("i2c test 4");
 }
 
 void writeNumberI2c(int address, float number){

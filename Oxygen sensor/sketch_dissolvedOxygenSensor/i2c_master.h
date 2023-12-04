@@ -9,6 +9,7 @@
 #include <Wire.h> 
 #include <Arduino.h>
 
+#define slaveAddressToClamCage 0x07
 #define slaveAddressToScarcrow 0x08
 #define slaveAddressToApiHandler 0x09
 

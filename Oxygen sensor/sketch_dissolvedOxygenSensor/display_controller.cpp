@@ -16,8 +16,11 @@
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void displayControllerSetup(){
+  Serial.println("test display 1");
   lcd.init();
+  Serial.println("test display 2");
   lcd.backlight();
+  Serial.println("test display 3");
 }
 
   void writeToDisplay(int rowIndex, int columIndex, String text){

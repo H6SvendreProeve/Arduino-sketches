@@ -11,7 +11,7 @@
   #define PASSWORD "iltsvind"
 
   #define PORT 8088
-  #define HOST "192.168.1.111"   // Mathias´s ip
-  //#define HOST "192.168.1.113" // Marius´s ip
+  //#define HOST "192.168.1.111"   // Mathias´s ip
+  #define HOST "192.168.1.113" // Marius´s ip
   
   #define PATH "/oxygen/CreateOxygenMeasurement"

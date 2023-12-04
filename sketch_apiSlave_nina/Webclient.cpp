@@ -39,7 +39,7 @@ void printWiFiStatus() {
 void makePostRequest(float value) {
   WiFiClient wifiClient;
   HttpClient client = HttpClient(wifiClient, host, port);
-  String keyValue = ""{\"oxygenValue\": "; // keyValue er nøgle værdien til body´en af post requested
+  String keyValue = "{\"oxygenValue\": "; // keyValue er nøgle værdien til body´en af post requested
   String jsonData = keyValue + String(value) + "}";
   client.post(path, "application/json", jsonData);
 

@@ -9,8 +9,8 @@
 
 #include "i2c_message_handler.h"
 
-void sendI2CMessagetoSlave(bool isDOGood, uint16_t i2cAddress){
-  if(isDOGood){
+void sendI2CMessageToSlave(bool isDONotGood, uint16_t i2cAddress){
+  if(isDONotGood){
     writeI2C(i2cAddress, "start");
     Serial.println("start is send");
   } else {
@@ -19,7 +19,7 @@ void sendI2CMessagetoSlave(bool isDOGood, uint16_t i2cAddress){
   }
 }
 
-void sendI2CMessagetoApiSlave(float dissolvedOxygenMgPerL, uint16_t i2cAddress){
+void sendI2CMessageToApiSlave(float dissolvedOxygenMgPerL, uint16_t i2cAddress){
     writeNumberI2c(i2cAddress, dissolvedOxygenMgPerL);
     Serial.println("Dissolvd oxygen mesument is send to api microcontroller slave");
 }

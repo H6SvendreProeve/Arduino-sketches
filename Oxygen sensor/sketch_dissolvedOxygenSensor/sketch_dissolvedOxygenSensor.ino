@@ -4,19 +4,24 @@
 
 void setup(){
   Serial.begin(115200);
+  Serial.println("test setup");
   displayControllerSetup();
+  Serial.println("test setup dis");
   i2cMasterSetup();
+  Serial.println("test setup i2c");
 }
 
 void loop(){
+  Serial.println("test");
   float mgPerLiter = getMgPerLMeasurement();
   Serial.println("mg per liter variable:");
   Serial.println(mgPerLiter);
 
   writeDissolvedOxygenMeasurementToDisplay(mgPerLiter);
   
-  sendI2CMessagetoApiSlave(mgPerLiter, slaveAddressToApiHandler);
-  sendI2CMessagetoSlave(mgPerLiter, slaveAddressToScarcrow);
+  sendI2CMessageToApiSlave(mgPerLiter, slaveAddressToApiHandler);
+  sendI2CMessageToSlave(mgPerLiter, slaveAddressToScarcrow);
+  sendI2CMessageToSlave(mgPerLiter, slaveAddressToClamCage);
   
   delay(1000);
 }

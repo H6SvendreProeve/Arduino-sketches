@@ -11,5 +11,5 @@ void setup() {
 
 void loop() {
   makePostRequest(receivedFloat);
-  delay(1000);
+  delay(10000);
 }
