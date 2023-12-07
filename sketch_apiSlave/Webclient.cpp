@@ -40,7 +40,9 @@ void makePostRequest(float value) {
   WiFiClient wifiClient;
   HttpClient client = HttpClient(wifiClient, host, port);
   String keyValue = "{\"oxygenValue\": "; // keyValue er nøgle værdien til body´en af post requested
-  String jsonData = keyValue + String(value) + "}";
+  String jsonData = keyValue + String(value) + ", \"OxygenMeasurementSystemId\": " + 1 + "}";
+
+This will result in a JSON string like:
   client.post(path, "application/json", jsonData);
 
   int statusCode = client.responseStatusCode();
